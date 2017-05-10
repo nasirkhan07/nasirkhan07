@@ -1,0 +1,54 @@
+<div class="search-box col-md-offset-4">
+    <div [style.margin-bottom]="'10px'" [style.margin-left]="'15%'">
+        Get Weather Information for Countries
+    </div>
+    <div>
+        <form (ngSubmit)="getWeather(inputBox.value)">
+            <input #inputBox type="text" class="search-input glyphicon-search" placeholder="Type here to get weather info">
+            <a (click)="getWeather(inputBox.value)"><i class="fa fa-search"></i></a>
+        </form>
+
+    </div>
+</div>
+<hr>
+<div class="search-result" *ngIf="!!weatherInfo">
+    <!--<div>
+        {{weatherInfo|json}}
+    </div>-->
+    <div class="col-md-offset-3">
+        <div>
+            <ul>
+                <li>
+                    <div>
+                        Current Weather State :
+                    </div>
+                    <hr>
+                    <div *ngFor="let weather of weatherInfo.weather">
+                        <div [style.margin-bottom]="'5px'">
+                            <img [src]="'http://openweathermap.org/img/w/'+weather.icon+'.png'" alt="weatherdesc">
+                        </div>
+                        <div>
+                            Situation : {{weather.main}}
+                        </div>
+                        <div>
+                            Description : {{weather.description}}
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    Country : {{weatherInfo.sys.country|uppercase}}
+                </li>
+                <li>
+                    Humidity : {{weatherInfo.main.humidity}}
+                </li>
+                <li>
+                    Temperature : {{weatherInfo.main.temp}}
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div *ngIf="inputBox.dirty && !weatherInfo ">
+        <h2>No results!!. Please try again</h2>
+    </div>
+</div>

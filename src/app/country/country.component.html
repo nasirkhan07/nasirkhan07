@@ -1,0 +1,55 @@
+<h1>
+    Welcome To <strong>CountryHoods</strong>
+</h1>
+<div class="search-box col-md-offset-4">
+    <div [style.margin-bottom]="'10px'" [style.margin-left]="'15%'">
+        Search By
+        <select [style.height]="'25px'" [(ngModel)]="criteria">
+      <option value="Name" >Name</option>
+      <option value="Capital">Capital</option>
+      <option value="Region">Region</option>
+  </select>
+    </div>
+    <div>
+        <input #inputBox type="text" class="search-input glyphicon-search" placeholder="Type here to search" (keyup)="searchCountry(inputBox.value)">
+        <a><i class="fa fa-search"></i></a>
+    </div>
+</div>
+<hr>
+<div class="search-result">
+    <h2><strong>Results:  {{countries?.length}} </strong></h2>
+    <div class="spinner" [hidden]="!isSearching">
+        <div class="dot1"></div>
+        <div class="dot2"></div>
+    </div>
+    <div [hidden]="isSearching" *ngFor="let country of countries" class="col-md-3 col-sm-6 col-xs-12">
+        <ul class="box-container">
+            <li>
+                <div>
+                    <img [alt]="country.flag.slice(country.flag.lastIndexOf('/')+1,country.flag.lastIndexOf('.'))" [src]="country.flag" alt="">
+                </div>
+                Name: {{country.name |uppercase}}
+            </li>
+            <li> Region: {{country.region}}</li>
+            <li> Capital: {{country.capital}}</li>
+            <li> Population: {{country.population}}</li>
+            <li> Languages:
+                <ul>
+                    <li *ngFor="let lang of country.languages">
+                        {{lang.name}}
+                    </li>
+                </ul>
+            </li>
+            <li> Currency Codes:
+                <ul>
+                    <li *ngFor="let cur of country.currencies">
+                        {{cur.code}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="inputBox.dirty && !countries ">
+        <h2>No results!!. Please try again</h2>
+    </div>
+</div>
