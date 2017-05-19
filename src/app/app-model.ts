@@ -1,3 +1,9 @@
+import { InjectionToken } from '@angular/core';
+
+export const jqueryToken = new InjectionToken('$');
+
+
+
 export interface Currency {
   "code": string,
   "name": string,
