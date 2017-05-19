@@ -1,3 +1,4 @@
+import {ActivatedRoute} from '@angular/router';
 import { jqueryToken } from './../app-model';
 import { Observable } from 'rxjs/Observable';
 import { Jsonp } from '@angular/http';
@@ -13,12 +14,20 @@ import { Component, OnInit, Optional, Inject, Injectable ,ViewChild} from '@angu
 })
 export class WeatherComponent implements OnInit {
   @ViewChild("dt") dt:any;
-  constructor(private http: Http, @Inject(jqueryToken) private $) {
+  constructor(private http: Http, @Inject(jqueryToken) private $, private route: ActivatedRoute) {
     console.log($);
 
    }
 
   ngOnInit() {
+this.route.queryParams.subscribe(val=>{
+if(!!val){
+if(val.hasOwnProperty("name")){
+  this.getWeather(val.name);
+}
+}
+
+});
   }
 
   ngAfterViewInit() {

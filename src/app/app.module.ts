@@ -1,3 +1,4 @@
+import { reducers } from './reducers/index';
 import { jqueryToken } from './app-model';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,7 +9,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { WeatherComponent } from './weather/weather.component';
 import { CountryComponent } from './country/country.component';
-
+import {StoreModule} from '@ngrx/store'
 
 const jquery: JQuery = window['$'] || window['jquery'];
 
@@ -19,6 +20,7 @@ const jquery: JQuery = window['$'] || window['jquery'];
     CountryComponent
   ],
   imports: [
+    StoreModule.provideStore(reducers),
     AppRoutingModule,
     BrowserModule,
     FormsModule,

@@ -1,5 +1,5 @@
 <h1>
-    Welcome To <strong>CountryHoods</strong>
+    Welcome To <strong>Country Search Page</strong>
 </h1>
 <div class="search-box col-md-offset-4">
     <div [style.margin-bottom]="'10px'" [style.margin-left]="'15%'">
@@ -22,33 +22,41 @@
         <div class="dot1"></div>
         <div class="dot2"></div>
     </div>
-    <div [hidden]="isSearching" *ngFor="let country of countries" class="col-md-3 col-sm-6 col-xs-12">
-        <ul class="box-container">
-            <li>
-                <div>
-                    <img [alt]="country.flag.slice(country.flag.lastIndexOf('/')+1,country.flag.lastIndexOf('.'))" [src]="country.flag" alt="">
-                </div>
-                Name: {{country.name |uppercase}}
-            </li>
-            <li> Region: {{country.region}}</li>
-            <li> Capital: {{country.capital}}</li>
-            <li> Population: {{country.population}}</li>
-            <li> Languages:
-                <ul>
-                    <li *ngFor="let lang of country.languages">
-                        {{lang.name}}
-                    </li>
-                </ul>
-            </li>
-            <li> Currency Codes:
-                <ul>
-                    <li *ngFor="let cur of country.currencies">
-                        {{cur.code}}
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+    <ng-container *ngIf="countries?.length>0">
+        <div [hidden]="isSearching" *ngFor="let country of countries" class="col-md-3 col-sm-6 col-xs-12">
+            <ul class="box-container">
+                <li>
+                    <ng-container *ngIf="country?.flag && country?.flag.length>0">
+                        <div>
+                            <img [alt]="country.flag.slice(country?.flag.lastIndexOf('/')+1,country.flag.lastIndexOf('.'))" [src]="country.flag" alt="">
+                            <a [routerLink]="'/weather'" [queryParams]="{name: country.name}" queryParamsHandling="merge" routerLinkActive=" active "> Check  Weather</a>
+                        </div>
+                        Name: {{country.name |uppercase}}
+                    </ng-container>
+
+                </li>
+                <li> Region: {{country.region}}</li>
+                <li> Capital: {{country.capital}}</li>
+                <li> Population: {{country.population}}</li>
+                <li> Languages:
+                    <ul>
+                        <li *ngFor="let lang of country.languages ">
+                            {{lang.name}}
+                        </li>
+                    </ul>
+                </li>
+                <li> Currency Codes:
+                    <ul>
+                        <li *ngFor="let cur of country.currencies ">
+                            {{cur.code}}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </ng-container>
+
     <div *ngIf="inputBox.dirty && !countries ">
         <h2>No results!!. Please try again</h2>
     </div>

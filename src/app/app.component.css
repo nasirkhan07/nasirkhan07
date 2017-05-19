@@ -1,92 +1,59 @@
-ul li {
-    list-style-type: none
+body {
+    margin: 0;
 }
 
-ul {
-    background-color: aliceblue;
-}
-
-.box-container {
-    height: 215px;
+ul.sidenav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
     overflow: auto;
 }
 
-.search-box {
-    float: none;
+ul.sidenav li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
 }
 
-.search-input {
-    width: 50%;
+ul.sidenav li a.active {
+    background-color: #4CAF50;
+    color: white;
 }
 
-img {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px;
-    width: 100px;
+ul.sidenav li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
 }
 
-.spinner {
-    margin: 100px auto;
-    width: 40px;
-    height: 40px;
-    position: relative;
-    text-align: center;
-    -webkit-animation: sk-rotate 2.0s infinite linear;
-    animation: sk-rotate 2.0s infinite linear;
+div.content {
+    margin-left: 15%;
+    padding: 1px 16px;
+    height: 1000px;
 }
 
-.dot1,
-.dot2 {
-    width: 60%;
-    height: 60%;
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    background-color: #333;
-    border-radius: 100%;
-    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
-    animation: sk-bounce 2.0s infinite ease-in-out;
-}
-
-.dot2 {
-    top: auto;
-    bottom: 0;
-    -webkit-animation-delay: -1.0s;
-    animation-delay: -1.0s;
-}
-
-@-webkit-keyframes sk-rotate {
-    100% {
-        -webkit-transform: rotate(360deg)
+@media screen and (max-width: 900px) {
+    ul.sidenav {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    ul.sidenav li a {
+        float: left;
+        padding: 15px;
+    }
+    div.content {
+        margin-left: 0;
     }
 }
 
-@keyframes sk-rotate {
-    100% {
-        transform: rotate(360deg);
-        -webkit-transform: rotate(360deg)
-    }
-}
-
-@-webkit-keyframes sk-bounce {
-    0%,
-    100% {
-        -webkit-transform: scale(0.0)
-    }
-    50% {
-        -webkit-transform: scale(1.0)
-    }
-}
-
-@keyframes sk-bounce {
-    0%,
-    100% {
-        transform: scale(0.0);
-        -webkit-transform: scale(0.0);
-    }
-    50% {
-        transform: scale(1.0);
-        -webkit-transform: scale(1.0);
+@media screen and (max-width: 400px) {
+    ul.sidenav li a {
+        text-align: center;
+        float: none;
     }
 }

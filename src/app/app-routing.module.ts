@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
       {
         path: '',
         redirectTo:"country",
-        pathMatch:"prefix"
+        pathMatch:"full"
       },
        {
         path: 'country',
@@ -24,6 +24,14 @@ import { RouterModule } from '@angular/router';
       },
        {
         path: 'weather',
+        component: WeatherComponent,
+      },
+       {
+        path: 'movies',
+        component: WeatherComponent
+      },
+       {
+        path: 'about',
         component: WeatherComponent
       },
       {
@@ -33,7 +41,7 @@ import { RouterModule } from '@angular/router';
       }
     ],
       {
-        useHash: false
+        useHash: true
       })
   ],
   exports: [
